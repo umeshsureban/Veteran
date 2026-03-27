@@ -1,0 +1,31 @@
+# Node dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dev tooling scripts
+serve.mjs
+screenshot.mjs
+server.log
+
+# Screenshots & captures
+temporary screenshots/
+*.png
+*.jpg
+*.jpeg
+
+# Internal docs — tracked in git but excluded from deploy
+*.pdf
+
+# Package manager (no build step needed)
+package.json
+package-lock.json
+
+# OS & editor artifacts
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo

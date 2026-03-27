@@ -1,0 +1,36 @@
+name: Deploy to Hostinger (veteran.aitomate.cloud)
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    name: FTP Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Deploy via FTP to Hostinger
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          local-dir: ./
+          exclude: |
+            **/.git*
+            **/.git*/**
+            .github/**
+            CLAUDE.md
+            SRAVAN_PROFILE.md
+            node_modules/**
+            temporary screenshots/**
+            *.png
+            *.pdf
+          log-level: verbose
+          dangerous-clean-slate: false
