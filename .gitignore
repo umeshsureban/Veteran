@@ -29,3 +29,9 @@ Thumbs.db
 .idea/
 *.swp
 *.swo
+
+# SSH keys (NEVER commit)
+veteran_deploy
+veteran_deploy.pub
+*.pem
+.ssh/
