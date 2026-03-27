@@ -17,20 +17,44 @@ jobs:
       - name: Setup SSH Key
         run: |
           mkdir -p ~/.ssh
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/id_rsa
+
+          # Write SSH key with proper handling
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" | tr -d '\r' > ~/.ssh/id_rsa
           chmod 600 ~/.ssh/id_rsa
-          
-          # Add VPS to known hosts (avoids interactive prompt)
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
+
+          # Verify SSH key format
+          ssh-keygen -l -f ~/.ssh/id_rsa && echo "✓ SSH key format verified"
+
+          # Add host to known_hosts (no -H flag for IP/domain)
+          ssh-keyscan ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts 2>/dev/null
+          chmod 644 ~/.ssh/known_hosts
+
+          # Create SSH config for better reliability
+          cat > ~/.ssh/config << EOF
+          Host ${{ secrets.SSH_HOST }}
+            HostName ${{ secrets.SSH_HOST }}
+            User ${{ secrets.SSH_USERNAME }}
+            IdentityFile ~/.ssh/id_rsa
+            StrictHostKeyChecking accept-new
+            UserKnownHostsFile ~/.ssh/known_hosts
+            PasswordAuthentication no
+          EOF
+          chmod 600 ~/.ssh/config
 
       - name: Deploy using rsync
         run: |
           echo "🚀 Starting deployment..."
 
+          # Test SSH connection first
+          echo "Testing SSH connection..."
+          ssh -v ${{ secrets.SSH_HOST }} "echo ✓ SSH connection successful"
+
           rsync -avz --delete \
             --exclude='.git' \
             --exclude='.github' \
-            -e "ssh -i ~/.ssh/id_rsa" \
-            ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_TARGET_DIR }}
+            --exclude='node_modules' \
+            --exclude='.DS_Store' \
+            -e "ssh -i ~/.ssh/id_rsa -o StrictHostKeyChecking=accept-new" \
+            ./ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:${{ secrets.SSH_TARGET_DIR }}/
 
           echo "✅ Deployment completed successfully"
