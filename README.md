@@ -1,6 +1,6 @@
 # VETERAN NextGen Academy — Landing Page
 
-Static landing page for **Sravan Kumar's** Class 10 tutoring business. Ex-Indian Air Force officer, CBSE & State board specialist.
+Static landing page for **Sravan Kumar's** Class 10 tutoring business. Ex-Indian Air Force officer, CBSE & State board specialist....
 
 **Live site:** https://veteran.aitomate.cloud  
 **GitHub:** https://github.com/umeshsureban/Veteran
