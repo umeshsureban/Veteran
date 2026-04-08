@@ -8,6 +8,39 @@ This is a static landing page for VETERAN NextGen Academy, featuring Sravan Kuma
 
 ## Getting Started
 
+### Dev Scripts (gitignored — recreate if missing)
+
+`serve.mjs` and `screenshot.mjs` are listed in `.gitignore` and are not committed to the repo. They must be created locally if absent.
+
+**serve.mjs** — minimal Node HTTP server for `localhost:3000`:
+```js
+import { createServer } from 'http';
+import { readFile } from 'fs/promises';
+import { extname, join } from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const PORT = 3000;
+
+const mimeTypes = {
+  '.html': 'text/html', '.css': 'text/css', '.js': 'application/javascript',
+  '.svg': 'image/svg+xml', '.png': 'image/png', '.ico': 'image/x-icon',
+};
+
+createServer(async (req, res) => {
+  let urlPath = req.url.split('?')[0];
+  if (urlPath === '/') urlPath = '/index.html';
+  const filePath = join(__dirname, urlPath);
+  const contentType = mimeTypes[extname(filePath).toLowerCase()] || 'application/octet-stream';
+  try {
+    const data = await readFile(filePath);
+    res.writeHead(200, { 'Content-Type': contentType });
+    res.end(data);
+  } catch { res.writeHead(404); res.end('Not found'); }
+}).listen(PORT, () => console.log(`Server running at http://localhost:${PORT}`));
+```
+
 ### Running the Site Locally
 - Use `node serve.mjs` to start a dev server at `http://localhost:3000`
 - This serves the project root directly (no build step needed)
@@ -19,6 +52,25 @@ This is a static landing page for VETERAN NextGen Academy, featuring Sravan Kuma
 - Optional label: `node screenshot.mjs http://localhost:3000 label-name` → `screenshot-N-label-name.png`
 - Always screenshot from localhost, never from `file:///` URLs
 - Compare screenshots against references using specific measurements: font sizes, spacing, hex colors, etc.
+
+## Deployment
+
+**Live site:** `https://veteran.aitomate.cloud`  
+**GitHub repo:** `umeshsureban/Veteran`
+
+Pushes to `master` trigger automatic deployment via GitHub Actions (`.github/workflows/deploy.yml`). The workflow uses **rsync over SSH** to sync files to the Hostinger VPS at `72.60.103.200`.
+
+**Required GitHub Secrets:**
+| Secret | Purpose |
+|---|---|
+| `SSH_PRIVATE_KEY` | Private key for VPS access |
+| `SSH_HOST` | VPS IP (`72.60.103.200`) |
+| `SSH_USERNAME` | VPS SSH user (e.g. `root`) |
+| `SSH_TARGET_DIR` | Absolute path on VPS to the subdomain's document root |
+
+**What deploys:** Everything except `.git/`, `.github/`, and `node_modules/`. Dev-only files (`serve.mjs`, `screenshot.mjs`, PDFs, screenshots) are gitignored and never reach the repo or server.
+
+To trigger a deployment: commit any change to `index.html` or `brand_assets/` and push to `master`. Monitor at `https://github.com/umeshsureban/Veteran/actions`.
 
 ## Architecture & Structure
 
