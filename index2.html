@@ -456,10 +456,26 @@
            OUTCOMES + INSIDE
         ============================================ */
         .outcomes-section { background: var(--white); }
-        .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.9rem; max-width: 780px; margin: 0 auto; }
-        .outcome-item { display: flex; align-items: center; gap: 1rem; background: var(--off-white); border-radius: 10px; padding: 1.25rem 1.5rem; }
-        .outcome-tick { color: var(--gold-dark); font-size: 1.3rem; flex-shrink: 0; font-weight: 700; }
-        .outcome-item p { color: #1A202C; font-size: 1.08rem; font-weight: 600; line-height: 1.6; }
+        .outcomes-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem; max-width: 900px; margin: 0 auto; }
+        .outcome-item {
+            display: flex; align-items: center; gap: 1.25rem;
+            background: var(--off-white); border-radius: 14px; padding: 1.75rem 2rem;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            opacity: 0; transform: translateY(24px);
+            animation: outcomeIn 0.55s ease forwards;
+        }
+        .outcome-item:hover { transform: translateY(-4px); box-shadow: 0 8px 28px rgba(0,0,0,0.12); border-color: rgba(212,175,55,0.35); }
+        .outcome-item:nth-child(1) { animation-delay: 0.05s; }
+        .outcome-item:nth-child(2) { animation-delay: 0.15s; }
+        .outcome-item:nth-child(3) { animation-delay: 0.25s; }
+        .outcome-item:nth-child(4) { animation-delay: 0.35s; }
+        .outcome-item:nth-child(5) { animation-delay: 0.45s; }
+        .outcome-item:nth-child(6) { animation-delay: 0.55s; }
+        @keyframes outcomeIn { to { opacity: 1; transform: translateY(0); } }
+        .outcome-tick { color: var(--gold-dark); font-size: 1.5rem; flex-shrink: 0; font-weight: 700; }
+        .outcome-item p { color: #1A202C; font-size: 1.18rem; font-weight: 600; line-height: 1.6; }
 
         .inside-section { background: var(--off-white); }
         .inside-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; max-width: 1000px; margin: 0 auto; }
@@ -585,6 +601,43 @@
         .demo-learn-icon { color: var(--gold-dark); font-size: 0.95rem; flex-shrink: 0; margin-top: 0.18rem; }
         .demo-learn-item p { color: var(--charcoal); font-size: 0.92rem; line-height: 1.65; }
         .demo-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+        /* ============================================
+           FAQ SECTION
+        ============================================ */
+        .faq-section { background: var(--white); }
+        .faq-inner { max-width: 820px; margin: 0 auto; }
+        .faq-list { display: flex; flex-direction: column; gap: 0; margin-top: 2.5rem; }
+        .faq-item {
+            border-bottom: 1px solid rgba(0,0,0,0.08);
+        }
+        .faq-item:first-child { border-top: 1px solid rgba(0,0,0,0.08); }
+        .faq-btn {
+            width: 100%; display: flex; justify-content: space-between; align-items: center;
+            padding: 1.4rem 0; gap: 1.5rem; background: none; border: none; cursor: pointer;
+            text-align: left;
+        }
+        .faq-q {
+            font-family: 'Sora', sans-serif; font-size: 1.08rem; font-weight: 700;
+            color: var(--navy-mid); line-height: 1.45; flex: 1;
+        }
+        .faq-icon {
+            width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+            background: rgba(212,175,55,0.12); border: 1.5px solid rgba(212,175,55,0.35);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: var(--gold-dark);
+            transition: transform 0.3s ease, background 0.3s ease;
+        }
+        .faq-item.open .faq-icon { transform: rotate(45deg); background: var(--gold); color: var(--navy); }
+        .faq-answer {
+            overflow: hidden; max-height: 0;
+            transition: max-height 0.4s ease, padding 0.3s ease;
+        }
+        .faq-item.open .faq-answer { max-height: 300px; }
+        .faq-answer p {
+            color: #374151; font-size: 1rem; line-height: 1.8;
+            padding-bottom: 1.4rem;
+        }
 
         /* ============================================
            CONTACT FORM
@@ -1239,11 +1292,7 @@
                     </div>
                 </div>
                 <div class="about-photo-wrap reveal-right">
-                    <!-- Replace src with actual instructor image path when available -->
-                    <div class="about-photo-placeholder">
-                        <span>👨‍🏫</span>
-                        <p>Instructor Photo<br><small>Replace with actual image</small></p>
-                    </div>
+                    <img src="brand_assets/Sravan_noBG.svg" alt="Sravan Kumar — Class 10 Tutor">
                 </div>
             </div>
         </section>
@@ -1421,6 +1470,91 @@
                             <div class="t-stars">★★★★★</div>
                             <p class="t-text">"After joining VETERAN, my daughter stopped dreading Chemistry. Sir makes reactions feel like puzzles you want to solve. She scored 95 and actually enjoyed it."</p>
                             <div class="t-author"><div class="t-avatar">M</div><div class="t-author-info"><span class="t-name">Meena Krishnan</span><span class="t-detail">Parent · Class 10  Board</span></div><span class="t-score-badge">95 Chemistry</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ FAQ ============ -->
+        <section class="faq-section" id="faq" aria-label="Frequently Asked Questions">
+            <div class="faq-inner">
+                <div class="section-header reveal">
+                    <div class="section-label">❓ FAQs</div>
+                    <h2 style="color:var(--navy-mid)">Frequently Asked Questions</h2>
+                    <p class="section-sub">Everything you need to know before joining VETERAN NextGen Academy.</p>
+                </div>
+                <div class="faq-list">
+                    <div class="faq-item reveal">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">1. Who is this program designed for?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>This is a specialized, intensive program exclusively for Class 10 CBSE students who want to master their board exams.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-1">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">2. Which subjects are covered?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>We focus strictly on the two "heavy hitters": Mathematics and Science. By specializing, we ensure deeper coverage and better results.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-2">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">3. Does this align with the new CBSE "Competency-Based" pattern?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>Absolutely. We do not believe in rote learning. We build a rock-solid foundation using visual aids and real-world applications. Once the concept is clear, we dive deep into the specific competency-based questions that now dominate the new CBSE syllabus.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-3">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">4. Can an average student really score 95% or above?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>Yes. Our "Average to Topper" roadmap is designed to bridge gaps in understanding. With our structured guidance and the student's consistency, scoring 95% to 100% is a very realistic and achievable goal.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-4">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">5. What does the weekly schedule look like?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>Success requires consistency. We meet 6 days a week for 1.5 hours daily. This includes comprehensive syllabus coverage, regular revision cycles, and chapter-wise testing via the VETERAN App and our curated Easy Notes.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-5">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">6. How large are the batches?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>To ensure your child is not just a face in a crowd, we limit our intake to 12–15 students per batch. This allows for a highly interactive environment where every doubt is addressed instantly.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">7. What if I miss a class?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>You get recordings + support to catch up without losing progress.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item reveal delay-1">
+                        <button class="faq-btn" aria-expanded="false">
+                            <span class="faq-q">8. What can we expect from the Free Demo Class?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer" role="region">
+                            <p>It's a "test drive" of our success formula. Students will experience our unique teaching style, see our problem-solving shortcuts, and get a look at the specialized CBSE-aligned materials we use to drive results.</p>
                         </div>
                     </div>
                 </div>
@@ -1720,6 +1854,19 @@
             setTimeout(() => window.open(`https://wa.me/918619510953?text=${msg}`, '_blank'), 1400);
         });
     })();
+
+    /* ── FAQ Accordion ── */
+    document.querySelectorAll('.faq-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            // Close all
+            document.querySelectorAll('.faq-item.open').forEach(el => el.classList.remove('open'));
+            // Toggle clicked
+            if (!isOpen) item.classList.add('open');
+            btn.setAttribute('aria-expanded', !isOpen);
+        });
+    });
     </script>
 </body>
 </html>
