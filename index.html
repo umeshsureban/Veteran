@@ -995,8 +995,8 @@
             <a href="#why"     class="nav-link">Why It Works</a>
             <a href="#demo"    class="nav-link">Free Demo</a>
             <a href="#contact" class="nav-link">Contact</a>
+            <a href="https://vedicmaths.aitomate.cloud" class="nav-link" target="_blank" rel="noopener">Vedic Maths</a>
             <!-- <a href="index.html" class="nav-v1-link">← V1: Academy Page</a> -->
-            <a href="https://wa.me/918619510953" class="nav-cta-wa">WhatsApp Enquiry</a>
         </div>
     </nav>
 
@@ -1739,7 +1739,6 @@
                             <span>Response within 2 hours</span>
                         </div>
                     </div>
-                    <a href="https://wa.me/918619510953" class="btn-whatsapp reveal delay-5" style="display:inline-flex;text-decoration:none;">💬 Chat on WhatsApp</a>
                 </div>
 
                 <div class="enrol-form-card reveal-right">
@@ -1749,7 +1748,7 @@
                     <div id="form-success" class="form-success">
                         <div class="form-success-icon">✅</div>
                         <h4>Seat Confirmed!</h4>
-                        <p>Opening WhatsApp to connect with Sravan Kumar directly...</p>
+                        <p>Opening WhatsApp group link to join the student community...</p>
                     </div>
 
                     <form id="enrol-form" novalidate>
@@ -1772,10 +1771,10 @@
                             <label for="f-email">Email Address <span class="opt">(optional)</span></label>
                             <input type="email" id="f-email" name="email" placeholder="yourname@gmail.com" autocomplete="email">
                         </div>
-                        <!-- <label class="form-consent">
+                        <label class="form-consent">
                             <input type="checkbox" id="f-consent" name="consent" required>
-                            <span>I agree to receive updates about demo sessions and Class 10 tutoring classes from VETERAN NextGen Academy via WhatsApp.</span>
-                        </label> -->
+                            <span>I agree to receive updates about demo sessions and Vedic Maths classes</span>
+                        </label>
                         <button type="submit" class="btn-submit" id="submit-btn">Confirm My FREE Seat →</button>
                     </form>
                 </div>
@@ -2002,31 +2001,32 @@
             const consent = document.getElementById('f-consent').checked;
 
             if (!name || !grade || phone.length < 10 || !consent) {
-                alert('Please fill in all required fields correctly.');
+                alert('Please fill in all required fields and check the consent box.');
                 return;
             }
 
             submitBtn.disabled    = true;
             submitBtn.textContent = '⏳ Saving your seat…';
 
-            const APPS_URL = 'YOUR_GOOGLE_APPS_SCRIPT_URL';
-            if (APPS_URL !== 'YOUR_GOOGLE_APPS_SCRIPT_URL') {
-                try {
-                    await fetch(APPS_URL, {
-                        method: 'POST', mode: 'no-cors',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify({ name, grade, phone, email, timestamp: new Date().toISOString() })
-                    });
-                } catch (_) {}
-            }
+            // ── Google Apps Script web app URL (paste after deploying) ──
+            const APPS_URL = 'https://script.google.com/macros/s/AKfycbyi3TANu8Emeum9bJmjyTHmk9vCbiii2N9j4Vjg4rzN3Jp6jK2iXZAMBygL4qXyiYIJ8A/exec';
 
-            form.style.display    = 'none';
+            try {
+                await fetch(APPS_URL, {
+                    method : 'POST',
+                    mode   : 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body   : JSON.stringify({ name, grade, phone, email })
+                });
+            } catch (_) { /* network errors are silent; data still goes on success */ }
+
+            // ── Show success state ──
+            form.style.display       = 'none';
             successBox.style.display = 'block';
 
-            const msg = encodeURIComponent(
-                `Hi Sravan Sir! I just registered for a free demo class.\n\nName: ${name}\nClass: ${grade}\nPhone: ${phone}`
-            );
-            setTimeout(() => window.open(`https://wa.me/918619510953?text=${msg}`, '_blank'), 1400);
+            // ── Redirect to WhatsApp group ──
+            const WA_GROUP = 'YOUR_WHATSAPP_GROUP_LINK'; // e.g. https://chat.whatsapp.com/AbCdEfGhIjK
+            setTimeout(() => window.open(WA_GROUP, '_blank'), 1400);
         });
     })();
 
