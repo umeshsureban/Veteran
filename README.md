@@ -1,20 +1,9 @@
 # VETERAN NextGen Academy — Landing Page
 
-Static landing page for **Sravan Kumar's** Class 10 tutoring business. Ex-Indian Air Force officer, CBSE & State board specialist....
+Static landing page for **Sravan Kumar's** Class 10 tutoring business. Ex-Indian Air Force officer, CBSE board specialist.
 
 **Live site:** https://veteran.aitomate.cloud  
 **GitHub:** https://github.com/umeshsureban/Veteran
-
----
-
-## Pages
-
-| File | Description |
-|---|---|
-| `index.html` | **V1** — Achievement-led narrative; showcases results, methodology, background |
-| `index2.html` | **V2** — Problem/solution narrative; "Stop Studying Hard, Start Studying Smart" |
-
-Both pages share the same design system, GLSL Hills WebGL animation, contact form, and testimonials section. A fixed V1/V2 toggle in the top-right corner lets visitors switch between versions.
 
 ---
 
@@ -39,7 +28,6 @@ Opens at `http://localhost:3000`. The server is a minimal Node.js HTTP server (s
 
 ```bash
 node screenshot.mjs http://localhost:3000
-node screenshot.mjs http://localhost:3000/index2.html
 ```
 
 Screenshots save to `./temporary screenshots/` (auto-incremented filenames).
@@ -67,13 +55,15 @@ Monitor deployments at: https://github.com/umeshsureban/Veteran/actions
 
 ```
 Veteran/
-├── index.html              # V1 landing page
-├── index2.html             # V2 landing page
+├── index.html              # Main landing page
 ├── brand_assets/
-│   ├── Nav_LogoNoBG.svg    # Navbar logo
-│   ├── Hero_logo.svg       # Hero section logo
-│   ├── Favicon_Logo.svg    # Favicon
-│   └── Sravan_noBG.svg     # Headshot image
+│   ├── Nav_LogoNoBG.svg        # Navbar logo
+│   ├── Hero_logo.svg           # Hero section logo
+│   ├── Favicon_Logo.svg        # Favicon
+│   ├── Sravan_noBG.svg         # Headshot image
+│   ├── testimonial1.jpeg       # Testimonial photo — Fadilah Fatmi
+│   ├── testimonial2.png        # Testimonial photo — Dimple
+│   └── testimonial3.png        # Testimonial photo — Ashritha
 ├── robots.txt
 ├── sitemap.xml
 ├── serve.mjs               # Dev server (gitignored)
@@ -94,6 +84,16 @@ CSS custom properties defined in `:root`:
 | `--white` | `#FFFFFF` | Light backgrounds, contrast text |
 
 Typography: **Playfair Display** (headings, weight 800) + **Sora** (body, weight 300–600)
+
+---
+
+## UI Features
+
+- **Floating social bar** — fixed to the left side, vertically centered; links to WhatsApp, Instagram, YouTube, LinkedIn, Facebook with hover tooltips
+- **Scroll-to-top button** — fixed bottom-right, appears after scrolling 400px
+- **Testimonial carousel** — auto-scrolling with photo cards (Fadilah, Dimple, Ashritha)
+- **GLSL Hills animation** — WebGL hero background via Three.js
+- **Scroll-reveal** — IntersectionObserver fade-in on section cards
 
 ---
 
