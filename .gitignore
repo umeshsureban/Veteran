@@ -11,9 +11,6 @@ server.log
 
 # Screenshots & captures
 temporary screenshots/
-*.png
-*.jpg
-*.jpeg
 
 # Internal docs — tracked in git but excluded from deploy
 *.pdf
