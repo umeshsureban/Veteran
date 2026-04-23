@@ -603,6 +603,43 @@
         .demo-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
         /* ============================================
+           VIDEO SECTION
+        ============================================ */
+        .video-section { background: var(--light-gray); padding: 5rem 2rem; }
+        .video-section-inner {
+            max-width: 1100px; margin: 0 auto;
+            display: grid; grid-template-columns: 1fr auto;
+            gap: 4rem; align-items: center;
+        }
+        .video-bullets {
+            list-style: none; margin-top: 1.5rem;
+            display: flex; flex-direction: column; gap: 0.85rem;
+        }
+        .video-bullets li {
+            display: flex; align-items: flex-start; gap: 0.75rem;
+            font-size: 1rem; color: var(--charcoal); line-height: 1.6;
+        }
+        .video-bullets li::before { content: "✔"; color: var(--gold-dark); font-weight: 700; flex-shrink: 0; }
+        .video-card {
+            width: 300px; aspect-ratio: 9/16;
+            border-radius: 20px; overflow: hidden;
+            box-shadow: var(--sh-gold-lg);
+            border: 2px solid rgba(212,175,55,0.35);
+            background: var(--navy);
+            flex-shrink: 0;
+        }
+        .video-player { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .video-text .btn-gold { margin-top: 2rem; display: inline-block; }
+        @media (max-width: 900px) {
+            .video-section-inner { grid-template-columns: 1fr; justify-items: center; gap: 2.5rem; }
+            .video-card { width: 260px; }
+        }
+        @media (max-width: 768px) {
+            .video-section { padding: 3rem 1.5rem; }
+            .video-card { width: 220px; }
+        }
+
+        /* ============================================
            FAQ SECTION
         ============================================ */
         .faq-section { background: var(--white); }
@@ -1492,6 +1529,35 @@
                 <div class="demo-buttons">
                     <a href="#contact" class="btn-gold">🎯 Book Free Demo Class</a>
                     <a href="https://wa.me/918619510953" class="btn-whatsapp">💬 WhatsApp Us</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ============ VIDEO PREVIEW ============ -->
+        <section class="video-section" id="video" aria-label="See the Teaching Method in Action">
+            <div class="video-section-inner">
+                <div class="video-text reveal-left">
+                    <div class="section-label">🎬 See It in Action</div>
+                    <h2 style="color:var(--navy-mid)">Watch How We Turn<br>Hard Work Into Smart Work</h2>
+                    <ul class="video-bullets">
+                        <li>How a single concept is taught in under 5 minutes</li>
+                        <li>The question-first method that removes exam panic</li>
+                        <li>Why students remember — not just understand</li>
+                    </ul>
+                    <a href="#contact" class="btn-gold">
+                        🎯 Book Free Demo Class
+                    </a>
+                </div>
+                <div class="video-card reveal-right">
+                    <iframe
+                        class="video-player"
+                        src="https://www.instagram.com/reel/DXMAsA_gdgp/embed/"
+                        frameborder="0"
+                        scrolling="no"
+                        allowtransparency="true"
+                        allowfullscreen
+                        title="Teaching method — Sravan Kumar, VETERAN NextGen Academy">
+                    </iframe>
                 </div>
             </div>
         </section>
