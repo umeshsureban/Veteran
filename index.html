@@ -907,8 +907,9 @@
         }
         .testimonials-track {
             display: flex;
-            gap: 1.5rem;
+            gap: 0;
             width: max-content;
+            will-change: transform;
             animation: testimonials-scroll 60s linear infinite;
         }
         .testimonials-track:hover { animation-play-state: paused; }
@@ -916,14 +917,19 @@
             0%   { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
+        .t-set {
+            display: flex;
+            gap: 1.5rem;
+            padding-right: 1.5rem;
+            flex-shrink: 0;
+        }
         .t-card {
             width: 320px;
             flex-shrink: 0;
-            background: rgba(255,255,255,0.04);
+            background: rgba(255,255,255,0.07);
             border: 1px solid rgba(212,175,55,0.18);
             border-radius: 18px;
             padding: 2rem 1.75rem;
-            backdrop-filter: blur(10px);
             transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
         }
         .t-card:hover {
@@ -1572,6 +1578,7 @@
                 </div>
                 <div class="testimonials-track-wrap">
                     <div class="testimonials-track">
+                        <div class="t-set">
                         <div class="t-card">
                             <div class="t-quote-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.9 5.2H7.7C6.2 5.2 5 6.4 5 7.9v4.2c0 1.5 1.2 2.7 2.7 2.7h1.7v1.2c0 1.6-1.3 2.9-2.9 2.9a.9.9 0 0 0 0 1.8c2.6 0 4.7-2.1 4.7-4.7V7.9c0-.4-.1-.7-.3-1zm9.1 0h-4.2c-1.5 0-2.7 1.2-2.7 2.7v4.2c0 1.5 1.2 2.7 2.7 2.7h1.7v1.2c0 1.6-1.3 2.9-2.9 2.9a.9.9 0 0 0 0 1.8c2.6 0 4.7-2.1 4.7-4.7V7.9c0-.4-.1-.7-.3-1z"/></svg></div>
                             <div class="t-stars">★★★★★</div>
@@ -1610,7 +1617,7 @@
                             <div class="t-author"><div class="t-avatar">M</div><div class="t-author-info"><span class="t-name">Meena Krishnan</span><span class="t-detail">Parent · Class 10  Board</span></div><span class="t-score-badge">95 Chemistry</span></div>
                         </div> -->
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial1.jpeg" alt="Fadilah Fatmi – Student" class="t-photo-img">
+                            <img src="/brand_assets/testimonial1.jpeg" alt="Fadilah Fatmi – Student" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Fadilah Fatmi</span>
@@ -1618,7 +1625,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial2.png" alt="Dimple – Parent" class="t-photo-img">
+                            <img src="/brand_assets/testimonial2.png" alt="Dimple – Parent" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Dimple</span>
@@ -1626,7 +1633,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial3.png" alt="Ashritha – Student" class="t-photo-img">
+                            <img src="/brand_assets/testimonial3.png" alt="Ashritha – Student" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Ashritha</span>
@@ -1634,7 +1641,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial4.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial4.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1642,7 +1649,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial5.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial5.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1650,7 +1657,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial6.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial6.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1658,13 +1665,15 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial7.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial7.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
                                 <span class="t-photo-role">Student</span>
                             </div>
                         </div>
+                        </div><!-- /.t-set -->
+                        <div class="t-set">
                         <!-- Duplicate set for seamless loop -->
                         <div class="t-card">
                             <div class="t-quote-icon"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.9 5.2H7.7C6.2 5.2 5 6.4 5 7.9v4.2c0 1.5 1.2 2.7 2.7 2.7h1.7v1.2c0 1.6-1.3 2.9-2.9 2.9a.9.9 0 0 0 0 1.8c2.6 0 4.7-2.1 4.7-4.7V7.9c0-.4-.1-.7-.3-1zm9.1 0h-4.2c-1.5 0-2.7 1.2-2.7 2.7v4.2c0 1.5 1.2 2.7 2.7 2.7h1.7v1.2c0 1.6-1.3 2.9-2.9 2.9a.9.9 0 0 0 0 1.8c2.6 0 4.7-2.1 4.7-4.7V7.9c0-.4-.1-.7-.3-1z"/></svg></div>
@@ -1703,7 +1712,7 @@
                             <div class="t-author"><div class="t-avatar">M</div><div class="t-author-info"><span class="t-name">Meena Krishnan</span><span class="t-detail">Parent · Class 10  Board</span></div><span class="t-score-badge">95 Chemistry</span></div>
                         </div> -->
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial1.jpeg" alt="Fadilah Fatmi – Student" class="t-photo-img">
+                            <img src="/brand_assets/testimonial1.jpeg" alt="Fadilah Fatmi – Student" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Fadilah Fatmi</span>
@@ -1711,7 +1720,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial2.png" alt="Dimple – Parent" class="t-photo-img">
+                            <img src="/brand_assets/testimonial2.png" alt="Dimple – Parent" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Dimple</span>
@@ -1719,7 +1728,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial3.png" alt="Ashritha – Student" class="t-photo-img">
+                            <img src="/brand_assets/testimonial3.png" alt="Ashritha – Student" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Ashritha</span>
@@ -1727,7 +1736,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial4.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial4.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1735,7 +1744,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial5.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial5.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1743,7 +1752,7 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial6.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial6.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
@@ -1751,13 +1760,14 @@
                             </div>
                         </div>
                         <div class="t-card t-card-photo">
-                            <img src="/brand_assets/testimonial7.jpeg" alt="Student Testimonial" class="t-photo-img">
+                            <img src="/brand_assets/testimonial7.jpeg" alt="Student Testimonial" class="t-photo-img" loading="lazy" decoding="async">
                             <div class="t-photo-footer">
                                 <div class="t-photo-stars">★★★★★</div>
                                 <span class="t-photo-name">Student</span>
                                 <span class="t-photo-role">Student</span>
                             </div>
                         </div>
+                        </div><!-- /.t-set -->
                     </div>
                 </div>
             </div>
@@ -2155,7 +2165,7 @@
             successBox.style.display = 'block';
 
             // ── Redirect to WhatsApp group ──
-            const WA_GROUP = 'YOUR_WHATSAPP_GROUP_LINK'; // e.g. https://chat.whatsapp.com/AbCdEfGhIjK
+            const WA_GROUP = 'https://chat.whatsapp.com/FrMfpnBZ2HpKbp1TvCPXz9?mode=gi_t'; // e.g. https://chat.whatsapp.com/AbCdEfGhIjK
             setTimeout(() => window.open(WA_GROUP, '_blank'), 1400);
         });
     })();
